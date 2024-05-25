@@ -77,20 +77,25 @@ class DBStorage:
 
     def get(self, cls, id):
         """Retrieves one object based on its class and id"""
-        if not cls or not id:
+        if cls not in classes.values():
             return None
 
-        model_class = classes.get(cls)
-        if not model_class:
-            return None
-
-        obj = self.__session.query(model_class).filter_by(id=id).first()
-        return obj
+        all_cls = models.storage.all(cls)
+        for value in all_cls.values():
+            if (value.id == id):
+                return value
+        return None
 
     def count(self, cls=None):
         """counts the number of objects in storage"""
-        if cls:
-            count = self.__session.query(classes[cls]).count()
+        all_class = classes.values()
+
+        if not cls:
+            count = 0
+            for clas in all_class:
+                count += len(models.storage.all(clas).values())
+
         else:
-            count = sum(self.__session.query(cls).count() for cls in classes.values())
+            count = len(models.storage.all(cls).values())
+
         return count
