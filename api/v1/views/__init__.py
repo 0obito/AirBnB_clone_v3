@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+This module initializes the blueprint for API
+"""
 from flask import Blueprint
 from api.v1.views.index import *
 
