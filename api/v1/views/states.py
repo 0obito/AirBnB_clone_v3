@@ -4,10 +4,9 @@ this module is a view for State objects that
 handles all default RESTFul API actions
 """
 
-import json
+from flask import jsonify
 from api.v1.views import app_views
 from models import storage
-from models.base_model import BaseModel
 from models.state import State
 
 
@@ -15,7 +14,5 @@ from models.state import State
 def retrieve_all():
     """ retrieves the list of all State objects """
     states_objs = storage.all(State)
-    states = []
-    for state in states_objs:
-        states.append(State(BaseModel).to_dict())
-    return json.dumps(states, indent=2)
+    states = [state.to_dict() for state in states_objs.values()]
+    return jsonify(states)
