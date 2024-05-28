@@ -22,7 +22,7 @@ def teardown(code):
 @app.errorhandler(404)
 def error_404(error):
     """ Handles the famous 404 Error in an unusual way """
-    return jsonify({"error": "Not found"})
+    return jsonify({"error": "Not found"}), 404
 
 if __name__ == "__main__":
     app.run(host=host, port=port, threaded=True)
