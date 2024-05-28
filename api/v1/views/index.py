@@ -18,10 +18,12 @@ classes = {"amenities": models.amenity.Amenity,
            "reviews": models.review.Review, "states": models.state.State,
            "users": models.user.User}
 
+
 @app_views.route('/status', strict_slashes=False)
 def status():
     """ Provides the status of the API """
     return jsonify({"status": "OK"})
+
 
 @app_views.route('/stats', strict_slashes=False)
 def count_by_type():
