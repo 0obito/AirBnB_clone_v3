@@ -18,10 +18,10 @@ def retrieve_all():
     return jsonify(states)
 
 
-@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
-def retrieve_one(state_id):
-    """ retrieves one state object, using its id """
-    state = storage.get(State, state_id)
-    if state is None:
-        abort(404)
-    return jsonify(state.to_dict())
+# @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+# def retrieve_one(state_id):
+#     """ retrieves one state object, using its id """
+#     state = storage.get(State, state_id)
+#     if state is None:
+#         abort(404)
+#     return jsonify(state.to_dict())
